@@ -8,6 +8,7 @@ public class RegularGrid {
 	private Cell[][] cells;
 	private final int hSectors;
 	private final int vSectors;
+	private int numberOfEmptyCells = 0;
 	
 	public RegularGrid(double minX, double minY, double maxX, double maxY, 
 			int hSectors, int vSectors, Point[] points) {
@@ -19,6 +20,20 @@ public class RegularGrid {
 		this.vSectors = vSectors;
 		
 		build(points);
+	}
+	
+	public int getNumberOfEmptyCells() {
+		return numberOfEmptyCells;
+	}
+	
+	public void calculateEmptyCells() {
+		for (int i = 0; i < cells.length; i++) {
+			for (int j = 0; j < cells[0].length; j++) {
+				if (cells[i][j] == null || cells[i][j].getPoints().size() == 0) {
+					numberOfEmptyCells++;
+				}
+			}
+		}
 	}
 	
 	public void build(Point[] points ) {			
